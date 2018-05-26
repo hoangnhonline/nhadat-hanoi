@@ -488,7 +488,7 @@ class ProductController extends Controller
             $meta = MetaData::find( $detail->meta_id );
         }               
         $priceUnitList = PriceUnit::all();
-        $districtList = District::where('city_id', 1)->where('status', 1)->get();
+        $districtList = District::where('city_id', 2)->where('status', 1)->get();
        // var_dump($detail->district_id);die;
         $wardList = Ward::where('district_id', $detail->district_id)->get();
         $streetList = Street::where('district_id', $detail->district_id)->get();

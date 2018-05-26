@@ -18,7 +18,7 @@ class DistrictController extends Controller
     */
     public function index(Request $request)
     {
-        $items = District::where('city_id', 1)->orderBy('display_order')->get();
+        $items = District::where('city_id', 2)->orderBy('display_order')->get();
         return view('backend.district.index', compact( 'items' ));
     }
 
