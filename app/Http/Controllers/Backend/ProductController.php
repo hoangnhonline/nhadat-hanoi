@@ -236,12 +236,12 @@ class ProductController extends Controller
             
         }       
         $priceUnitList = PriceUnit::all();
-        $city_id = $request->city_id ? $request->city_id : 1;
+        $city_id = $request->city_id ? $request->city_id : 2;
 
         $districtList = District::where('city_id', $city_id)->where('status', 1)->get();
 
        // var_dump($detail->district_id);die;
-        $district_id = $request->district_id ? $request->district_id : 2;
+        $district_id = $request->district_id ? $request->district_id : 1;
         $wardList = Ward::where('district_id', $district_id)->get();
         $streetList = Street::where('district_id', $district_id)->get();
         $projectList = Project::where('district_id', $district_id)->get();
