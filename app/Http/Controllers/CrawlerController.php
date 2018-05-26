@@ -52,6 +52,36 @@ class CrawlerController extends Controller
             }            
         }
     }
+    public function district(){
+        set_time_limit(10000);
+        $cityArr = ['HN','HP', 'QNI'];
+        foreach ($districtArr as $dis) {
+            $url = 'https://dothi.net/Handler/SearchHandler.ashx?module=GetDistrict&cityCode='. $dis; 
+            $chs = curl_init();            
+            curl_setopt($chs, CURLOPT_URL, $url);
+            curl_setopt($chs, CURLOPT_RETURNTRANSFER, 1); 
+            curl_setopt($chs, CURLOPT_HEADER, 0);
+            $result = curl_exec($chs);
+            
+            curl_close($chs);
+
+            $data = json_decode($result, true);
+            $i = 0;
+            $district_id = District::where('id_dothi', $dis)->first()->id;
+            foreach($data as $ward){
+                $i++;
+                Ward::create([
+                    'id_dothi' => $ward['Id'],
+                    'name' => $ward['Text'],
+                    'prefix' => $ward['WardPrefix'],
+                    'district_id' => $district_id,
+                    'city_id' => 1,
+                    'display_order' => $i,
+                    'slug' => Helper::changeFileName($ward['Text'])
+                ]);           
+            }            
+        }
+    }
     public function street(){
         set_time_limit(10000);
         //$districtArr = [54,61,71];
