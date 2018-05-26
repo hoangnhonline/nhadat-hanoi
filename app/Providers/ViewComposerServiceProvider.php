@@ -60,7 +60,7 @@ class ViewComposerServiceProvider extends ServiceProvider
 			}
 	        $settingArr = Settings::whereRaw('1')->lists('value', 'name');
 	        $articleCate = ArticlesCate::orderBy('display_order', 'desc')->get();	     
-	        $cityList = City::whereIn('id', [1, 6])->get();
+	        $cityList = City::whereIn('id', [2, 5, 49])->get();
 	        $districtList = District::where('city_id', 1)->where('status',1)->get();
 	        $tinRandom = Articles::whereRaw(1);
 	        if($tinRandom->count() > 0){

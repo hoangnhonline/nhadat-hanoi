@@ -17,13 +17,13 @@ class District extends Model  {
      *
      * @var bool
      */
-    public $timestamps = false;
+    public $timestamps = true;
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = [ 'name', 'slug', 'city_id', 'display_order', 'meta_id'];
+    protected $fillable = [ 'name', 'slug', 'city_id', 'display_order', 'meta_id', 'id_dothi', 'status'];
 
     public function ward(){
         return $this->hasMany('App\Models\Ward', 'district_id');
