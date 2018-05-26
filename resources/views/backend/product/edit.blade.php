@@ -56,14 +56,14 @@
                   <!-- Tab panes -->
                   <div class="tab-content">
                     <div role="tabpanel" class="tab-pane active" id="home">
-                      <div class="form-group col-md-4  pleft-5">
+                      <div class="form-group col-md-6  pleft-5">
                           <label for="email">Loại <span class="red-star">*</span></label>
                             <select class="form-control" name="type" id="type">
                                 <option value="1" {{ old('type', $detail->type) == 1 ? "selected" : "" }}>Bán</option>
                                 <option value="2" {{ old('type', $detail->type) == 2 ? "selected" : "" }}>Cho thuê</option>
                             </select>
                         </div>
-                        <div class="form-group col-md-4 none-padding">
+                        <div class="form-group col-md-6 none-padding">
                           <label for="email">Danh mục<span class="red-star">*</span></label>
                           <select class="form-control" name="estate_type_id" id="estate_type_id">
                             <option value="">--Chọn--</option>
@@ -74,26 +74,7 @@
                             >{{ $value->name }}</option>
                             @endforeach
                           </select>
-                        </div>
-                        <div class="form-group col-md-4">
-                          <label for="email">Danh mục con</label>
-                          <?php 
-                          $cateList = (object) [];
-                          $estate_type_id = old('estate_type_id', $detail->estate_type_id);
-                          if($estate_type_id > 0){
-                            $cateList = DB::table('cate')->where('estate_type_id', $estate_type_id)->get();
-                          }
-                          ?>
-                          <select class="form-control" name="cate_id" id="cate_id">
-                            <option value="">--Chọn--</option>
-                            @foreach( $cateList as $value )
-                            <option value="{{ $value->id }}"
-                            {{ old('cate_id', $detail->cate_id) == $value->id ? "selected" : "" }}                           
-
-                            >{{ $value->name }}</option>
-                            @endforeach
-                          </select>
-                        </div>
+                        </div>                        
                         <div class="form-group col-md-4  pleft-5">
                           <label for="email">Tỉnh/TP <span class="red-star">*</span></label>
                             <select class="form-control" name="city_id" id="city_id">
