@@ -68,6 +68,10 @@
                   <input type="text" class="form-control" name="hotline" id="hotline" value="{{ $settingArr['hotline'] }}">
                 </div>
                 <div class="form-group">
+                  <label>Giới thiệu sơ lược</label>
+                  <textarea class="form-control" rows="3" name="gioi_thieu_so_luoc" id="gioi_thieu_so_luoc">{{ $settingArr['gioi_thieu_so_luoc'] }}</textarea>
+                </div>
+                <div class="form-group">
                   <label>Thông tin footer</label>
                   <textarea class="form-control" rows="3" name="cty_info" id="cty_info">{{ $settingArr['cty_info'] }}</textarea>
                 </div>
@@ -176,6 +180,16 @@
 <script type="text/javascript">
     $(document).ready(function(){
       var editor = CKEDITOR.replace( 'cty_info',{
+          language : 'vi',
+          filebrowserBrowseUrl: "{{ URL::asset('/backend/dist/js/kcfinder/browse.php?type=files') }}",
+          filebrowserImageBrowseUrl: "{{ URL::asset('/backend/dist/js/kcfinder/browse.php?type=images') }}",
+          filebrowserFlashBrowseUrl: "{{ URL::asset('/backend/dist/js/kcfinder/browse.php?type=flash') }}",
+          filebrowserUploadUrl: "{{ URL::asset('/backend/dist/js/kcfinder/upload.php?type=files') }}",
+          filebrowserImageUploadUrl: "{{ URL::asset('/backend/dist/js/kcfinder/upload.php?type=images') }}",
+          filebrowserFlashUploadUrl: "{{ URL::asset('/backend/dist/js/kcfinder/upload.php?type=flash') }}",
+          height : 300
+      });
+      var editor2 = CKEDITOR.replace( 'gioi_thieu_so_luoc',{
           language : 'vi',
           filebrowserBrowseUrl: "{{ URL::asset('/backend/dist/js/kcfinder/browse.php?type=files') }}",
           filebrowserImageBrowseUrl: "{{ URL::asset('/backend/dist/js/kcfinder/browse.php?type=images') }}",
