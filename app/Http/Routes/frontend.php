@@ -54,7 +54,8 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('so-sanh.html', ['as' => 'so-sanh', 'uses' => 'CompareController@index']);
     Route::get('lien-he.html', ['as' => 'contact', 'uses' => 'HomeController@contact']);
     Route::get('{slug}.html', ['as' => 'danh-muc', 'uses' => 'ProductController@cate']);
-
+    Route::get('/{slug}', ['as' => 'custom-search', 'uses' => 'ProductController@customSearch']); 
+    Route::get('/{slug}/{q}', ['as' => 'custom-search-2', 'uses' => 'ProductController@customSearch2']);   
 
 });
 

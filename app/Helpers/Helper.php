@@ -24,15 +24,20 @@ class Helper
              echo '<option value="">Loại bất động sản</option>';
         }elseif($table == 'price'){
             echo '<option value="">Mức giá</option>';
-        }elseif($table == 'district'){
-            echo '<option value="">Quận/Huyện</option>';
-        }else{            
+        }elseif($table=="project"){            
             echo '<option value="">Dự án</option>';
+        }else{
+            echo '<option value="">Quận/Huyện</option>';
         }
         if(!empty(  (array) $listData  )){
             
-            foreach($listData as $data){
-                echo "<option value=".$data->id.">".$data->name."</option>";
+            foreach($listData as $data){                
+                $s = "<option ";
+                if(isset($data->slug)){
+                    $s.= "data-slug=". $data->slug;
+                }
+                echo $s.=" value=".$data->id.">".$data->name."</option>";
+
             }
         }
     }
