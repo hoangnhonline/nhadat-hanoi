@@ -158,7 +158,188 @@
 				auto: true,
 				pause: 4000
 			});
+			$('#btnSearch').click(function(){		
+				if($('#estate_type_id').val() == ''){
+					swal({ title: '', text: 'Vui lòng chọn loại bất động sản.', type: 'error' });
+					return false;
+				}	
+				var url = $('#estate_type_id').find(":selected").data('slug');
+				
+				if($('#project_id').val() > 0){
+					url += '-' + $('#project_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-5-' + $('#estate_type_id').val() + '-' + $('#project_id').val();
+					return false;
+				}
+				if($('#street_id').val() > 0){
+					url += '-' + $('#street_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-4-' + $('#estate_type_id').val() + '-' + $('#street_id').val();
+					return false;
+				}
+				if($('#ward_id').val() > 0){
+					url += '-' + $('#ward_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-3-' + $('#estate_type_id').val() + '-' + $('#ward_id').val();
+					return false;
+				}
+				if($('#district_id').val() > 0){
+					url += '-' + $('#district_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-2-' + $('#estate_type_id').val() + '-' + $('#district_id').val();
+					return false;
+				}
+				if($('#city_id').val() > 0){					
+					url += '-' + $('#city_id').find(":selected").data('slug');
+					location.href="{{ env('app.url') }}/" + url + '-1-' + $('#estate_type_id').val() + '-' + $('#city_id').val();
+				}
+			});
+			$('#district_id').change(function(){
+				var district_id = $(this).val();
+				$.ajax({
+					url : '{{ route('get-child') }}',
+					data : {
+						mod : 'ward',
+						col : 'district_id',
+						id : district_id
+					},
+					type : 'POST',
+					dataType : 'html',
+					success : function(data){
+						$('#ward_id').html(data).selectpicker('refresh');
+					}
+				});
+
+				$.ajax({
+					url : '{{ route('get-child') }}',
+					data : {
+						mod : 'street',
+						col : 'district_id',
+						id : district_id
+					},
+					type : 'POST',
+					dataType : 'html',
+					success : function(data){
+						$('#street_id').html(data).selectpicker('refresh');
+					}
+				});
+
+				$.ajax({
+					url : '{{ route('get-child') }}',
+					data : {
+						mod : 'project',
+						col : 'district_id',
+						id : district_id
+					},
+					type : 'POST',
+					dataType : 'html',
+					success : function(data){
+						$('#project_id').html(data).selectpicker('refresh');
+					}
+				});
+			});
+
+
+			$('.block-box-search li a').click(function(){
+				obj = $(this);
+				var type = obj.data('type');
+				$('#type').val(type);
+				$('.block-box-search li').removeClass('active');
+				obj.parents('li').addClass('active');
+
+				$.ajax({
+					url : '{{ route('get-child') }}',
+					data : {
+						mod : 'estate_type',
+						col : 'type',
+						id : type
+					},
+					type : 'POST',
+					dataType : 'html',
+					success : function(data){
+						$('#estate_type_id').html(data).selectpicker('refresh');
+						@if(isset($estate_type_id) && $estate_type_id > 0)
+						$('#estate_type_id').val({{ $estate_type_id }}).selectpicker('refresh');
+						@endif
+					}
+				});
+				$.ajax({
+					url : '{{ route('get-child') }}',
+					data : {
+						mod : 'price',
+						col : 'type',
+						id : type
+					},
+					type : 'POST',
+					dataType : 'html',
+					success : function(data){
+						$('#price_id').html(data).selectpicker('refresh');
+						@if(isset($price_id) && $price_id > 0)
+						$('#price_id').val({{ $price_id }}).selectpicker('refresh');
+						@endif
+					}
+				});
+			});
+			@if(isset($type) && $type >0)
+				var type = {{ $type }};
+				$('#type').val({{ $type }});
+				$('.block-box-search li').removeClass('active');
+				$('.block-box-search li a[data-type={{$type}}]').parents('li').addClass('active');
+
+				$.ajax({
+					url : '{{ route('get-child') }}',
+					data : {
+						mod : 'estate_type',
+						col : 'type',
+						id : type
+					},
+					type : 'POST',
+					dataType : 'html',
+					success : function(data){
+						$('#estate_type_id').html(data).selectpicker('refresh');
+						@if(isset($estate_type_id) && $estate_type_id > 0)
+						$('#estate_type_id').val({{ $estate_type_id }}).selectpicker('refresh');
+						@endif
+					}
+				});
+				$.ajax({
+					url : '{{ route('get-child') }}',
+					data : {
+						mod : 'price',
+						col : 'type',
+						id : type
+					},
+					type : 'POST',
+					dataType : 'html',
+					success : function(data){
+						$('#price_id').html(data).selectpicker('refresh');
+						@if(isset($price_id) && $price_id > 0)
+						$('#price_id').val({{ $price_id }}).selectpicker('refresh');
+						@endif
+					}
+				});
+			@endif
 		});
+function getDistrict(city_id) {
+    if(!city_id) {
+      $('#district_id').empty();
+      $('#district_id').append('<option value="0">Chọn Quận/Huyện</option>');
+      return;
+    }
+
+    $.ajax({
+      url: "{{ route('get-district') }}",
+      method: "POST",
+      data : {
+        id: city_id
+      },
+      success : function(list_ward){          	
+        $('#district_id').empty();
+        $('#district_id').append('<option value="0">Chọn Quận/Huyện</option>');
+
+        for(i in list_ward) {
+          $('#district_id').append('<option data-slug="'+list_ward[i].slug +'"  value="'+list_ward[i].id+'">'+list_ward[i].name+'</option>');
+        }
+        $('.selectpicker').selectpicker('refresh');
+      }
+    });
+  }   
 	</script>
 </body>
 </html>

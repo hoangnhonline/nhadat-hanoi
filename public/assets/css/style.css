@@ -367,7 +367,7 @@ img {
     background: #fafafa;
 }
 .block-search .block-contents {
-    background: rgb(47, 105, 158);
+    background: #589f39;
     padding: 15px;
     position: relative;
     float: left;
@@ -404,7 +404,11 @@ img {
 .selectpicker-cus .btn {
     padding: 4px 12px;
     border-radius: 0;
-    border: 1px solid #6990b1;
+    border: 1px solid #FFF;
+}
+#btnSearch{
+    color: #589f39 !important;
+    background-color: #CCC !important;
 }
 .selectpicker-cus .bootstrap-select.btn-group .dropdown-toggle .caret {
     display: inline-block;
@@ -503,7 +507,7 @@ img {
 .block-tab-customize .nav-tabs>li.active>a:hover {
     color: #fff;
     cursor: default;
-    background-color: #2f699e;
+    background-color: #589f39;
     border: none;
     border-bottom-color: transparent;
 }
@@ -518,7 +522,7 @@ img {
 .block-tab-customize .nav>li>a:focus,
 .block-tab-customize .nav>li>a:hover {
     text-decoration: none;
-    background-color: #2f699e;
+    background-color: #589f39;
 }
 .block-tab-customize .nav-tabs>li>a:hover {
     color: #fff;
