@@ -1,21 +1,94 @@
 @include('frontend.partials.meta')
 @section('content')
+<section style="margin-bottom: 10px !important;">
+  <article class="block block-inews block-news-new">
+    <div class="block-advisory">
+      <div class="col-sm-6 col-xs-12">
+        <div class="block-title block-title-common">
+          <h3><span class="icon-tile"><i class="fa fa-star"></i></span> GIỚI THIỆU</h3>
+        </div>
+        <div class="block-content">{!! $settingArr['gioi_thieu_so_luoc'] !!}</div>
+      </div>
+    </div>
+    <div class="block-architectural">
+      <div class="col-sm-6 col-xs-12">
+        <div class="block-title block-title-common">
+          <h3><span class="icon-tile2"><img src="{{ URL::asset('assets/images/icon-tkkt.png') }}" alt="VIDEO CLIP"></span> Hình ảnh</h3>
+        </div>
+        <div class="block-contents">
+          <?php 
+            if(!isset($project_id)){
+              $bannerArr = DB::table('banner')->where(['object_id' => 1, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+            }else{
+              if($tab_id == 1){
+                $bannerArr =  DB::table('banner')->where(['object_id' => $project_id, 'object_type' => 4])->orderBy('display_order', 'asc')->get();
+              }else{
+                $bannerArr = (object)[];
+              }
+              
+            }
+
+            ?>                    
+            @if($bannerArr)
+            <div class="block-slider-home">
+                    <div class="owl-carousel dotsData owl-style2" data-nav="false" data-margin="0" data-items='1' data-autoplayTimeout="500" data-autoplay="true" data-loop="true">
+                      <?php $i = 0; ?>
+                      @foreach($bannerArr as $banner)
+                       <?php $i++; ?>
+                      <div class="item-slide" data-dot="{{ $i }}">
+                        @if($banner->ads_url !='')
+                        <a href="{{ $banner->ads_url }}">
+                        @endif
+                          <img src="{{ Helper::showImage($banner->image_url) }}" alt="slide {{ $i }}">
+                        @if($banner->ads_url !='')
+                        </a>
+                        @endif
+                      </div><!-- item-slide1 -->
+                      @endforeach             
+                    </div>
+                  </div>
+            @endif
+        </div>
+      </div>
+    </div>
+  </article><!-- /block-inews -->
+</section>
+<div class="clearfix"></div>
+<?php 
+$bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+?>             
+      <section style="padding: 0 10px;margin: 10px 0" > 
+      <?php $i = 0; ?>
+@foreach($bannerArr as $banner)
+  <?php $i++; ?>
+          @if($banner->ads_url !='')
+  <a href="{{ $banner->ads_url }}">
+  @endif
+              <img src="{{ Helper::showImage($banner->image_url) }}" alt="Banner giữa trang {{ $i }}" style="width:100%"></a>
+
+           @if($banner->ads_url !='')
+  </a>
+  @endif
+
+      @endforeach
+      </section>
 <section class="col-sm-12 col-xs-12 block-sitemain">
     <article class="block block-news-new clearfix">
     <div class="col-sm-12 col-xs-12">      
         <div class="row">
           <ul class="nav nav-tabs" role="tablist">
             <li role="presentation" class="active">
-              <a href="#trmn11" aria-controls="trmn11" role="tab" data-toggle="tab">BĐS BÁN</a>
-            </li>
-            <li role="presentation">
               <a href="#trmn12" aria-controls="trmn12" role="tab" data-toggle="tab">BĐS CHO THUÊ</a>
             </li>
+            <li role="presentation" >
+              <a href="#trmn11" aria-controls="trmn11" role="tab" data-toggle="tab">BĐS BÁN</a>
+            </li>
+            
           </ul>
           
           <div class="block-contents">
             <div class="tab-content">
-              <div role="tabpanel" class="tab-pane active" id="trmn11">
+              <div role="tabpanel" class="tab-pane" id="trmn11">
                 <ul>                  
                   @foreach($hotProduct as $product)
                     <li class="news-new-item">                      
@@ -57,7 +130,7 @@
                  
                 </ul>                      
               </div><!-- /home -->
-              <div role="tabpanel" class="tab-pane" id="trmn12">
+              <div role="tabpanel" class="tab-pane active" id="trmn12">
                 <ul>                  
                   @foreach($hotProduct2 as $product)
                     <li class="news-new-item">                      
@@ -104,6 +177,86 @@
         </div>
     </div>
   </article><!-- /block-news-new -->
+</section>
+<section style="margin-bottom: 10px !important;">
+  <article class="block block-inews block-news-new">
+    <div class="block-advisory">
+      <div class="col-sm-9 col-xs-12">
+        <article class="block block-news-new clearfix" id="du-an-list">
+            <div class="col-sm-12 col-xs-12">      
+                <div class="row">
+                  <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active">
+                      <a href="#trmn1" aria-controls="trmn1" role="tab" data-toggle="tab">Dự án</a>
+                    </li>                          
+                  </ul>
+                  
+                  <div class="block-contents">
+                    <div class="tab-content">
+                      <div role="tabpanel" class="tab-pane active" id="trmn1">
+                       <div  class="owl-carousel dotsData owl-style2" data-nav="false" data-margin="0" data-items='3' data-autoplayTimeout="500" data-autoplay="true" data-loop="true">
+                @if($landingList)
+                  @foreach($landingList as $value)
+                  <div class="large-item" style="padding:10px">
+                                    <a href="{{ route('detail-project', [$value->slug])}}" title="{!! $value->name !!}"><img src="{{ $value->image_url ? Helper::showImageThumb($value->image_url, 3, '306x194') : URL::asset('backend/dist/img/no-image.jpg') }}" alt="" /></a>
+                                    <h4><a href="{{ route('detail-project', [$value->slug])}}" title="{!! $value->name !!}">{!! $value->name !!}</a></h4>
+                                    <p>{{ $value->address }}</p>
+                                </div>
+                                @endforeach
+                            @endif
+                </div>                      
+                      </div><!-- /home -->                             
+                    </div>
+                  </div>
+                </div>
+            </div>
+          </article><!-- /block-news-new -->
+      </div>
+    </div>
+    <div class="block-architectural">
+      <div class="col-sm-3 col-xs-12">                
+        <div class="block-contents">
+
+          <?php 
+          $bannerArr = DB::table('banner')->where(['object_id' => 6, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+          ?>                  
+          <div style="margin-bottom: 5px;">
+          <?php $i = 0; ?>
+          @foreach($bannerArr as $banner)
+          <?php $i++; ?>
+              @if($banner->ads_url !='')
+          <a href="{{ $banner->ads_url }}">
+          @endif
+                  <img src="{{ Helper::showImage($banner->image_url) }}" alt="Banner tuyển dụng {{ $i }}" style="width:100%"></a>
+
+               @if($banner->ads_url !='')
+          </a>
+          @endif
+
+          @endforeach
+          </div>
+          <?php 
+          $bannerArr = DB::table('banner')->where(['object_id' => 7, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
+          ?> 
+          <div>
+          <?php $i = 0; ?>
+          @foreach($bannerArr as $banner)
+          <?php $i++; ?>
+              @if($banner->ads_url !='')
+          <a href="{{ $banner->ads_url }}">
+          @endif
+                  <img src="{{ Helper::showImage($banner->image_url) }}" alt="Banner tuyển dụng {{ $i }}" style="width:100%"></a>
+
+               @if($banner->ads_url !='')
+          </a>
+          @endif
+
+          @endforeach
+          </div>
+        </div>
+      </div>
+    </div>
+  </article><!-- /block-inews -->
 </section>
 <section style="margin-bottom: 10px !important;">
 <article class="block block-fengshui block-news-new">

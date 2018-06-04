@@ -5,6 +5,13 @@
     </div>
     <ul class="nav navbar-nav navbar-left">
         <li class="level0 {{ \Request::route()->getName() == "home" ? "active" : "" }}"><a class="" href="{{ route('home') }}">Trang chủ</a></li><!-- END MENU HOME -->
+        <li class="level0 {{ (in_array(\Request::route()->getName(), ['cho-thue', 'danh-muc', 'chi-tiet']) && isset($type) && $type == 2) ? "active" : "" }}"><a href="{{ route('cho-thue') }}">BĐS cho thuê</a>
+            <ul class="level0 submenu">
+                @foreach($thueList as $thue)
+                <li class="level1"><a href="{{ route('danh-muc', $thue->slug ) }}">{!! $thue->name !!}</a></li>                           
+                @endforeach
+            </ul>
+        </li><!-- END MENU BLOG -->
         <li class="level0 parent {{ (in_array(\Request::route()->getName(), ['ban', 'danh-muc', 'chi-tiet']) && isset($type) && $type == 1) ? "active" : "" }}">
             <a href="{{ route('ban') }}">BĐS bán</a>
             <ul class="level0 submenu">
@@ -13,13 +20,7 @@
                 @endforeach
             </ul>
         </li><!-- END MENU SHOP -->
-        <li class="level0 {{ (in_array(\Request::route()->getName(), ['cho-thue', 'danh-muc', 'chi-tiet']) && isset($type) && $type == 2) ? "active" : "" }}"><a href="{{ route('cho-thue') }}">BĐS cho thuê</a>
-            <ul class="level0 submenu">
-                @foreach($thueList as $thue)
-                <li class="level1"><a href="{{ route('danh-muc', $thue->slug ) }}">{!! $thue->name !!}</a></li>                           
-                @endforeach
-            </ul>
-        </li><!-- END MENU BLOG -->
+        
         <li class="level0 {{ in_array(\Request::route()->getName(), ['du-an', 'detail-project', 'tab']) ? "active" : "" }}"><a href="{{ route('du-an') }}">Dự án</a></li>
         <li class="level0 {{ isset($slug) && \Request::route()->getName() == "news-list" && $slug == "tin-tuc" ? "active" : "" }}">
             <a href="{{ route('news-list', 'tin-tuc') }}">Tin tức</a>            
