@@ -23,6 +23,7 @@ Route::group(['namespace' => 'Frontend'], function()
     Route::get('/nha-dat-ban', ['as' => 'ban', 'uses' => 'ProductController@ban']);
     Route::get('/nha-dat-cho-thue', ['as' => 'cho-thue', 'uses' => 'ProductController@choThue']);
     Route::get('/du-an-dang-ban', ['as' => 'dang-ban', 'uses' => 'ProjectsController@dangban']);
+    Route::post('/send-contact', ['as' => 'send-contact', 'uses' => 'ContactController@store']);
     Route::get('/du-an-da-ban', ['as' => 'da-ban', 'uses' => 'ProjectsController@daban']);
 
     Route::get('/san-pham-le', ['as' => 'san-pham-le', 'uses' => 'ProductController@ban']);

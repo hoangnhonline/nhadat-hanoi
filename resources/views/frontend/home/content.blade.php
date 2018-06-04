@@ -468,20 +468,70 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
 <?php 
 $bannerArr = DB::table('banner')->where(['object_id' => 3, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
 ?>             
-<article class="block block-adv-full">
-<?php $i = 0; ?>
-@foreach($bannerArr as $banner)
-<?php $i++; ?>
-    @if($banner->ads_url !='')
-<a href="{{ $banner->ads_url }}">
-@endif
-        <img src="{{ Helper::showImage($banner->image_url) }}" alt="Banner tuyển dụng {{ $i }}" style="width:100%"></a>
+<article class="block block-news-new block-fengshui">
+  <div class="col-sm-7 col-xs-12" style="padding: 5px;padding-top: 0px">
+    <?php $i = 0; ?>
+    @foreach($bannerArr as $banner)
+    <?php $i++; ?>
+      @if($banner->ads_url !='')
+    <a href="{{ $banner->ads_url }}">
+    @endif
+          <img src="{{ Helper::showImage($banner->image_url) }}" alt="Banner tuyển dụng {{ $i }}" style="width:100%"></a>
 
-     @if($banner->ads_url !='')
-</a>
-@endif
+       @if($banner->ads_url !='')
+    </a>
+    @endif
 
-@endforeach
+    @endforeach
+    </div>
+    <div class="col-sm-5 col-xs-12">
+      <div class="block-contents">
+        <article class="block-sidebar block-news-sidebar">
+          <div class="block-title-common">
+            <h3><span class="icon-tile"><i class="fa fa-star"></i></span> Liên hệ</h3>
+          </div>
+          <div class="block-contents">
+            @if(Session::has('message'))
+                  <p class="alert alert-info" >{{ Session::get('message') }}</p>
+                  @endif
+            <form method="POST" action="{{ route('send-contact') }}" id="contact-form">
+              @if (count($errors) > 0)
+                    <div class="alert alert-danger">
+                      <ul>                         
+                          <li>Vui lòng nhập đầy đủ thông tin.</li>                          
+                      </ul>
+                    </div>
+                  @endif  
+              <input type="hidden" name="_token" value="{{ csrf_token() }}">
+              <div class="form-group">
+                <input type="text" name="full_name" class="form-control" value="{{ old('full_name') }}" placeholder="Họ tên">
+              </div>
+              <div class="form-group">
+                <input type="text" name="address" class="form-control" value="{{ old('address') }}" placeholder="Địa chỉ">
+              </div>
+              <div class="form-group">
+                <input type="email" name="email" class="form-control" value="{{ old('email') }}" placeholder="Email">
+              </div>
+              <div class="form-group">
+                <input type="text" name="phone" class="form-control" value="{{ old('phone') }}" placeholder="Điện thoại">
+              </div>
+              <div class="form-group">
+                <button class="btn btn-info btn-sm" id="btnGui">Gửi thông tin</button>
+              </div>
+            </form>
+          </div>
+        </article><!-- /block-news-sidebar -->
+        
+      </div>
+    </div>
   </article>
 </section>
+<style type="text/css">
+  #btnGui{
+    background-color: #589f39
+  }
+  #contact-form input.form-control{
+    border: 1px solid #CCC !important;
+  }
+</style>
 @endsection

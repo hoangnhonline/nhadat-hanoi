@@ -114,8 +114,6 @@
 		</section>
 	</section><!-- /main -->
 
-	
-
 	@include('frontend.home.footer')	
     <style type="text/css">
     	#du-an-list .owl-dots {
