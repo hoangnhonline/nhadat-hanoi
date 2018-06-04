@@ -469,7 +469,7 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
 $bannerArr = DB::table('banner')->where(['object_id' => 3, 'object_type' => 3])->orderBy('display_order', 'asc')->get();
 ?>             
 <article class="block block-news-new block-fengshui">
-  <div class="col-sm-7 col-xs-12" style="padding: 5px;padding-top: 0px">
+  <div class="col-sm-7 col-xs-12" style="padding: 5px;padding-top: 15px">
     <?php $i = 0; ?>
     @foreach($bannerArr as $banner)
     <?php $i++; ?>
