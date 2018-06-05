@@ -92,10 +92,10 @@
                   </div>               
                 </div>
                 <div class="form-group">
-                  <label>Ẩn/hiện</label>
+                  <label>Trạng thái</label>
                   <select class="form-control" name="status" id="status">                  
-                    <option value="0" {{ $detail->status == 0 ? "selected" : "" }}>Ẩn</option>
-                    <option value="1" {{ $detail->status == 1 ? "selected" : "" }}>Hiện</option>                  
+                    <option value="1" {{ $detail->status == 1 ? "selected" : "" }}>Đang bán</option>
+                    <option value="2" {{ $detail->status == 2 ? "selected" : "" }}>Đã bán</option>                  
                   </select>
                 </div>                
                  <div class="form-group">

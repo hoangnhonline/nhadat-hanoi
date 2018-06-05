@@ -86,10 +86,10 @@
                   </div>               
                 </div>
                 <div class="form-group">
-                  <label>Ẩn/hiện</label>
+                  <label>Trạng thái</label>
                   <select class="form-control" name="status" id="status">                  
-                    <option value="0" {{ old('status') == 0 ? "selected" : "" }}>Ẩn</option>
-                    <option value="1" {{ old('status') == 1 || old('status') == NULL ? "selected" : "" }}>Hiện</option>                  
+                    <option value="1" {{ old('status') == 1 ? "selected" : "" }}>Đang bán</option>
+                    <option value="2" {{ old('status') == 2 ? "selected" : "" }}>Đã bán</option>                  
                   </select>
                 </div>               
                 <div class="form-group">
