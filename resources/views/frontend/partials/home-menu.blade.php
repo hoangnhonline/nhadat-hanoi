@@ -5,6 +5,7 @@
     </div>
     <ul class="nav navbar-nav navbar-left">
         <li class="level0 {{ \Request::route()->getName() == "home" ? "active" : "" }}"><a class="" href="{{ route('home') }}">Trang chủ</a></li><!-- END MENU HOME -->
+        <li class="level0 {{ \Request::route()->getName() == "danh-muc" && isset($slug) && $slug == "gioi-thieu" ? "active" : "" }}"><a class="" href="{{ route('danh-muc', 'gioi-thieu') }}">Giới thiệu</a></li><!-- END MENU HOME -->
         <li class="level0 {{ (in_array(\Request::route()->getName(), ['cho-thue', 'danh-muc', 'chi-tiet']) && isset($type) && $type == 2) ? "active" : "" }}"><a href="{{ route('cho-thue') }}">BĐS cho thuê</a>
             <ul class="level0 submenu">
                 @foreach($thueList as $thue)
@@ -30,6 +31,9 @@
         </li><!-- END MENU SHOP -->
         <li class="level0 {{ isset($slug) && \Request::route()->getName() == "news-list" && $slug == "van-ban-phap-luat" ? "active" : "" }}">
             <a href="{{ route('news-list', 'van-ban-phap-luat') }}">Văn bản pháp luật</a>            
+        </li><!-- END MENU SHOP -->
+        <li class="level0 {{ \Request::route()->getName() == "contact" ? "active" : "" }}">
+            <a href="{{ route('contact') }}">Liên hệ</a>            
         </li><!-- END MENU SHOP --> 
     </ul>
 </div><!-- /.navbar-collapse -->
