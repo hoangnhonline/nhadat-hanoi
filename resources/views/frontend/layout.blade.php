@@ -34,6 +34,7 @@
     <meta name="norton-safeweb-site-verification" content="-1t675c2tm6yc1iiisvmazxhwlu4chr547-91-psjr5jge1rf9ph4c2cwzyh5h0ua5w0ev8pbkf" />       
     <meta name="wot-verification" content="bcbd535ff2ff0c0067e0"/>
     <meta name="twitter:image" content="{{ Helper::showImage($socialImage) }}" />
+    <meta name="google-site-verification" content="30g0UaFd87AEiS3ImyAcYIk7gXRx0XV8nVdRVue2ORo" />
 	<link rel="icon" href="{{ URL::asset('assets/images/favicon.ico') }}" type="image/x-icon">
 	<!-- ===== Style CSS Common ===== -->
 	<link rel="stylesheet" type="text/css" href="{{ URL::asset('assets/css/style.css') }}">

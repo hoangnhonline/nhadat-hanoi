@@ -146,15 +146,7 @@ $(document).ready(function(){
   $('#notifiModal  #type').change(function(){
     processNotiType($(this).val())
   });
-  CKEDITOR.editorConfig = function( config ) {
-  config.toolbarGroups = [
-    { name: 'clipboard', groups: [ 'clipboard', 'undo' ] },
-    { name: 'editing', groups: [ 'find', 'selection', 'spellchecker', 'editing' ] },
-  
-  ];
 
-  config.removeButtons = 'Underline,Subscript,Superscript';
-};
   var editor2 = CKEDITOR.replace('contentNoti',{
           language : 'vi',
           height : 100,

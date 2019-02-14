@@ -230,10 +230,10 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
                         
                       </div>
                       <div class="news-new-item-description">
-                        <h4>
+                        <h2>
                         <a class="description-title vip1" href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}">@if( $product->is_hot == 1 )
                         <img class="img-hot" src="{{ URL::asset('backend/dist/img/star.png')}}" alt="Nổi bật" title="Nổi bật" />
-                        @endif {!! $product->title !!}</a></h4>
+                        @endif {!! $product->title !!}</a></h2>
                             <div class="description-info">
                               <div class="id-post"><i class="fa fa-rebel" aria-hidden="true"></i><label>Mã tin<span>:</span></label>{{ $product->id }}</div>
                               <div class="price"><label>Giá<span>:</span></label>{!! $product->price !!} {{ Helper::getName($product->price_unit_id, 'price_unit')}}                                
@@ -272,10 +272,10 @@ $bannerArr = DB::table('banner')->where(['object_id' => 2, 'object_type' => 3])-
                         
                       </div>
                       <div class="news-new-item-description">
-                        <h4>
+                        <h2>
                         <a class="description-title vip1" href="{{ route('chi-tiet', [$product->slug_loai, $product->slug, $product->id]) }}">@if( $product->is_hot == 1 )
                         <img class="img-hot" src="{{ URL::asset('backend/dist/img/star.png')}}" alt="Nổi bật" title="Nổi bật" />
-                        @endif {!! $product->title !!}</a></h4>
+                        @endif {!! $product->title !!}</a></h2>
                             <div class="description-info">
                               <div class="id-post"><i class="fa fa-rebel" aria-hidden="true"></i><label>Mã tin<span>:</span></label>{{ $product->id }}</div>
                               <div class="price"><label>Giá<span>:</span></label>{!! $product->price !!} {{ Helper::getName($product->price_unit_id, 'price_unit')}}                                

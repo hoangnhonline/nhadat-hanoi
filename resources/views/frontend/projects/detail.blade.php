@@ -207,29 +207,29 @@
 				<div class="row">
 					<div class="col-sm-6 col-xs-12">
 						<img class="project-logo-contact" src="{{ $detail->logo_url ? Helper::showImage($detail->logo_url) : URL::asset('backend/dist/img/no-image.jpg') }}" alt="{{ $detail->name }}">
-						<h3 class="page-title-child">CÔNG TY TNHH DỊCH VỤ TƯ VẤN BẤT ĐỘNG SẢN THANH PHÚ THỊNH LAND</h3>
+						<h3 class="page-title-child">CTY CỔ PHẦN ĐẦU TƯ VÀ TM BẤT ĐỘNG SẢN IPO VIỆT NAM</h3>
 						<div class="block-table-nobor-tab">
 							<table class="table table-no-border">
 								<tr>
 									<td>
-										<label>Địa chỉ :</label>
+										<label>VP Giao dịch :</label>
 									</td>
 									<td>
-										34 Trần Hưng Đạo, P. Tân Sơn Nhì, Q. Tân Phú. TP.HCM
+										HA 2 -6- Little Việt Nam, Hoàng Quốc Việt, P. Hùng Thắng, TP. Hạ Long
 									</td>
 								</tr>
 								<tr>
 									<td>
 										<label>Phone :</label>
 									</td>
-									<td>(028) 22 539 578</td>
+									<td>0964 26 26 25</td>
 								</tr>
 								<tr>
 									<td>
 										<label>Email :</label>
 									</td>
 									<td>
-										<a href="mailto:harrytrieu.lands@gmail.com?subject=feedback">harrytrieu.lands@gmail.com</a>
+										<a href="mailto:phongdephalong123@gmail.com?subject=feedback">phongdephalong123@gmail.com</a>
 									</td>
 								</tr>
 							</table>
